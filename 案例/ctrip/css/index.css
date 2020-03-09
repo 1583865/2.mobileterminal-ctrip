@@ -1,0 +1,506 @@
+/*公共样式*/
+body {
+	/*文字属性*/
+	font-size: 12px;
+	font-family: "Arial","Microsoft Yahei","SimSun";
+	color: #333;
+	background-color: #F2F2F2;
+	height: 4000px;
+	padding-top: 45px;
+}
+img {
+	/*为了图片去掉3px空白*/
+	display: block;
+	width: 100%;
+}
+a {
+	text-decoration: none;
+	color: #fff;
+}
+/*header开始*/
+.header {
+	width: 100%;
+	/*占有高度45px*/
+	height: 45px;
+	min-width: 320px;
+	max-width: 540px;
+	background-color: #F6F6F6;
+	border-top: 1px solid #CCCCCC;
+	border-bottom: 1px solid #CCCCCC;
+	/*搜索框  和header有距离 父子盒有距离  padding  并且padding挤出a绝对定位位置*/
+	padding: 7px 50px 0px 8px;
+	/*内减盒模型  width  height就是占有宽度  高度*/
+	box-sizing: border-box;
+	/*一直渲染在页面的顶部  一定是固定定位   压盖顺序最靠上设置z-index*/
+	position: fixed;
+	/*固定定位 1脱标  水平居中mg: 0 auto失效   2参考浏览器窗口四个顶点*/
+	left: 50%;
+	top: 0px;
+	transform: translateX(-50%);
+	z-index: 10;
+}
+.header .search {
+	/*标准流  width百分数：表示相对于父盒子内容宽度比值*/
+	width: 100%;
+	height: 26px;
+	background-color: #fff;
+	border: 1px solid #999999;
+	border-radius: 5px;
+	padding-left: 24px;
+	/*内减盒模型一般设置百分比布局*/
+	box-sizing: border-box;
+	box-shadow: 0px 2px 3px rgba(0,0,0,.3);
+	/*文字属性 可以继承*/
+	color: #666666;
+	line-height: 24px;
+	position: relative;
+}
+/*通过伪元素实现  放大镜效果*/
+.header .search::before {
+	/*content属性  行内元素*/
+	content: "";
+	/*需要将放大镜 需要渲染在父盒子padding内部  必须用绝对定位*/
+	/*子绝父相*/
+	position: absolute;
+	/*绝对定位元素脱标 不再区分块和行内 都设置宽高*/
+	/*对于固定宽度  小尺寸都是宽高  使用px*/
+	width: 13px;
+	height: 14px;
+	top: 5px;
+	left: 8px;
+	/*对于移动设置图片，美工设置好的图片，我们前端使用时缩小一半  */
+	/*读取的坐标÷2*/
+	background: url(../images/icon.png) no-repeat -60px -279.5px;
+	/*引入的背景图尺寸÷2*/
+	background-size: 104px 327.5px;
+}
+.header .login {
+	/*固比模型 对与固定值设置绝对定位  比设置标准流100%*/
+	/*对于a需要渲染在父盒子padding内部  一定使用绝对定位*/
+	position: absolute;
+	/*绝对定位参考：  距离最近且有定位（相对，绝对，固定）的祖先元素*/
+	/*子绝父固*/
+	width: 50px;
+	height: 39px;
+	top: 4px;
+	right: 0px;
+	color: #2EAAE0;
+	text-align: center;
+}
+.header .login::before {
+	/*before行内元素不能设置宽高  但是想设置宽高  可以转块*/
+	content: "";
+	display: block;
+	width: 23px;
+	height: 24px;
+	background: url(../images/icon.png) no-repeat -59.5px -194.5px;
+	/*引入的背景图尺寸÷2*/
+	background-size: 104px 327.5px; 
+	/*块级元素的水平居中*/
+	margin: 0 auto;
+}
+/*banner*/
+.banner {
+	width: 100%;
+	min-width: 320px;
+	max-width: 540px;
+	/*让插入图片自动撑高*/
+	margin: 0 auto;
+	position: relative;
+}
+.banner .circles {
+	/*需要压盖pic 一定是绝对定位*/
+	position: absolute;
+	width: 67px;
+	height: 5px;
+	right: 6px;
+	bottom: 6px;
+}
+.banner .circles ol li {
+	float: left;
+	width: 5px;
+	height: 5px;
+	margin-right: 5px;
+	background-color: rgba(255,255,255,.5);
+}
+.banner .circles ol li.cur {
+	width: 17px;
+	background-color: #fff;
+	border-radius: 10px;
+}
+.banner .circles ol li.nomg {
+	margin-right: 0px;
+}
+/*主导航*/
+.nav {
+	width: 100%;
+	padding: 4px;
+	box-sizing: border-box;
+	min-width: 320px;
+	max-width: 540px;
+	margin: 0 auto;
+}
+.nav .row {
+	width: 100%;
+	height: 90px;
+	background-color: #FF697A;
+	border-radius: 8px;
+	margin-bottom: 4px;
+}
+.nav .row:nth-child(2) {
+	background-color: #3D98FF;
+}
+.nav .row:nth-child(3) {
+	background-color: #44C522;
+}
+.nav .row:nth-child(4) {
+	background-color: #FC9720;
+}
+.nav .row ul li {
+	float: left;
+	/*1/3是盒子占有宽度 使用内减盒模型*/
+	width: 33.33%;
+	height: 45px;
+	border-right: 1px solid #fff;
+	border-top: 1px solid #fff;
+	box-sizing: border-box;
+}
+.nav .row ul li:first-child {
+	height: 90px;
+	border-top: none;
+}
+.nav .row ul li:nth-child(2) {
+	border-top: none;
+}
+.nav .row ul li:nth-child(3) {
+	border: none;
+}
+.nav .row ul li:nth-child(5) {
+	border-right: none;
+}
+.nav .row ul li a {
+	/*a尽量 范围大一下*/
+	display: block;
+	/*标准流 相对于父盒子内容宽 高*/
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	line-height: 45px;
+	text-shadow: 0px 2px 3px rgba(0,0,0,.3);
+	position: relative;
+}
+.nav .row ul li:first-child a::after {
+	content: "";
+	/*绝对定位*/
+	position: absolute;
+	width: 41px;
+	height: 34.5px;
+	background: url(../images/icon.png) no-repeat 0px -129.5px;
+	background-size: 104px 327.5px;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: 14px;
+}
+.nav .row:nth-child(2) ul li:first-child a::after {
+	width: 44px;
+	height: 25.5px;
+	background-position: 0px -297px; 
+	bottom: 20px;
+}
+.nav .row:nth-child(3) ul li:first-child a::after {
+	width: 35.5px;
+	height: 41.5px;
+	background-position: 0px -180.5px; 
+	bottom: 11px;
+}
+.nav .row:last-child ul li:first-child {
+	height: 45px;
+}
+.nav .row:last-child ul li:first-child a::after {
+	background-image: none;
+}
+.nav .row:last-child ul li:nth-child(5) {
+	border-right: 1px solid #fff;
+}
+.nav .row:last-child ul li:nth-child(6) {
+	border-right: none;
+}
+/*侧导航*/
+.sub-nav {
+	width: 100%;
+	padding: 0px 4px;
+	box-sizing: border-box;
+	min-width: 320px;
+	max-width: 540px;
+	margin: 0px auto;
+	overflow: hidden;
+}
+.sub-nav ul {
+	width: 100%;
+	overflow: hidden;
+	background-color: #fff;
+	border-radius: 5px;
+}
+.sub-nav ul li {
+	float: left;
+	width: 25%;
+	height: 61px;
+	border-right: 1px solid #F2F2F2;
+	border-bottom: 1px solid #F2F2F2;
+	box-sizing: border-box;
+}
+.sub-nav ul li:nth-child(4n) {
+	border-right: none;
+}
+.sub-nav ul li:nth-child(9),
+.sub-nav ul li:nth-child(10),
+.sub-nav ul li:nth-child(11),
+.sub-nav ul li:nth-child(12) {
+	border-bottom: none;
+	height: 60px;
+}
+.sub-nav ul li a {
+	display: block;
+	width: 100%;
+	/*标准流  高度使用百分数：表示父盒子内容高比值*/
+	height: 100%;
+	text-align: center;
+	color: #000000;
+	line-height: 90px;
+	position: relative;
+}
+.sub-nav ul li a::before {
+	content: "";
+	position: absolute;
+	width: 20px;
+	height: 19px;
+	background: url(../images/sub.png) no-repeat 0px -80px;
+	background-size: 20px 315px;
+	left: 50%;
+	margin-left: -10px;
+	top: 11px;
+}
+.sub-nav ul li:nth-child(5) a::before {
+	background-position: 0px -160px;
+}
+
+/*特卖汇*/
+.sale {
+	width: 100%;
+	min-width: 320px;
+	max-width: 540px;
+	background-color: #fff;
+	border-top: 1px solid #DBDBDB;
+	border-bottom: 1px solid #DBDBDB;
+	height: 263px;
+	padding: 15px 6px 0px 8px;
+	box-sizing: border-box;
+	margin: 8px auto;
+}
+.sale .hd {
+	width: 100%;
+	height: 14px;
+	/*内部的a超过hd范围 千万不设置overflow*/
+	position: relative;
+}
+.sale .hd h3 {
+	/*
+	需要渲染背景图padding 用padding将盒子撑开 盒子设置height:0px;
+	同时用户不能看到文字
+	盒子内容范围：56*0 只要内容超过就是溢出隐藏 
+	*/
+	width: 56px;
+	height: 0px;
+	padding-top: 14px;
+	background: url(../images/un_home_text.png) no-repeat;
+	background-size: 79px 57.5px;
+	overflow: hidden;
+}
+.sale .hd a {
+	position: absolute;
+	width: 102px;
+	height: 20px;
+	background-image: -webkit-linear-gradient(left,#FF4E64,#FE78CC);
+	right: 0px;
+	top: -4px; 
+	border-radius: 10px;
+	padding-left: 11px;
+	box-sizing: border-box;
+	line-height: 20px;
+}
+.sale .hd a::after {
+	content: "";
+	/*子绝父绝*/
+	position: absolute;
+	width: 7px;
+	height: 7px;
+	border-top: 2px solid #fff;
+	border-right: 2px solid #fff;
+	transform: rotate(45deg);
+	top: 6px;
+}
+.sale .bd {
+	margin-top: 15px;
+	width: 100%;
+	height: 205px;
+}
+.sale .bd .hot {
+	float: left;
+	width: 50%;
+	/*距离也均分*/
+	border-right: 2px solid #fff;
+	height: 100%;
+	background-color: #F9F9F9;
+	box-sizing: border-box;
+}
+.sale .bd .hot .pic {
+	width: 100%;
+	height: 117px;
+	overflow: hidden;
+	position: relative;
+}
+.sale .bd .hot .pic span {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 37px;
+	height: 20px;
+	background-color: #FD3A51;
+	color: #fff;
+	text-align: center;
+	line-height: 20px;
+}
+.sale .bd .hot .pic span::after {
+	/*利用边框模拟尖三角*/
+	content: "";
+	position: absolute;
+	width: 0px;
+	height: 0px;
+	border: 10px solid #FD3A51;
+	right: -10px;
+	top: 0px;
+	border-color: #FD3A51 transparent transparent;
+	/*上边框宽度边长*/
+	border-top-width: 20px;
+}
+.sale .bd .hot .txt {
+	/*多行文字省略号*/
+	width: 100%;
+	height: 51px;
+	padding: 7px 7px 0px 7px;
+	box-sizing: border-box;
+	line-height: 22px;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.sale .bd .hot .price {
+	height: 22px;
+	padding-left: 8px;
+	line-height: 22px;
+	font-size: 14px;
+}
+.sale .bd .hot .price i {
+	font-style: normal;
+	font-size: 12px;
+}
+.sale .bd .hot .price span {
+	/*行内元素*/
+	padding: 2px 6px;
+	background-color: #FD3A51;
+	font-size: 12px;
+	border-radius: 10px;
+	margin-left: 4px;
+	color: #fff;
+}
+.sale .bd .tejia {
+	float: left;
+	width: 50%;
+	height: 205px;
+	border-left: 2px solid #fff;
+	box-sizing: border-box;
+	/*文字属性设置祖先*/
+	line-height: 22px;
+	color: #444444;
+}
+.sale .bd .tejia .top {
+	padding-top: 7px;
+	padding-left: 7px;
+	height: 81px;
+	position: relative;
+	background-color: #F9F9F9;
+}
+.sale .bd .tejia .top p:first-child {
+	color: #FD3A51;
+}
+.sale .bd .tejia .top::after {
+	content: "";
+	position: absolute;
+	width: 53.5px;
+	height: 71px;
+	background-image: url(../images/qiandaizi.png);
+	background-size: 53.5px 71px;
+	right: 4px;
+	bottom: 0px;
+}
+.sale .bd .tejia .bottom {
+	height: 113px;
+	background-color: #F9F9F9;
+	margin-top: 4px;
+}
+.sale .bd .tejia .bottom .jing {
+	float: left;
+	width: 50%;
+	/*均分  只给右侧盒子设置边框*/
+	height: 100%;
+	padding-top: 7px;
+	box-sizing: border-box;
+	color: #96ABFF;
+	font-weight: bold;
+	text-align: center;
+}
+.sale .bd .tejia .bottom .jing p:last-child {
+	color: #333;
+}
+.sale .bd .tejia .bottom .jing p span {
+	color: #96ABFF; 
+}
+.sale .bd .tejia .bottom div {
+	position: relative;
+}
+.sale .bd .tejia .bottom div::after {
+	/*通过标签选择器 可以同时设置多个元素样式*/
+	content: "";
+	position: absolute;
+	width: 49.5px;
+	height: 35px;
+	background-image: url(../images/feiji.png);
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: 9px;
+	background-size: 49.5px 35px;
+}
+.sale .bd .tejia .bottom div.wou {
+	float: left;
+	width: 50%;
+	border-left: 4px solid #fff;
+	height: 100%;
+	padding-top: 7px;
+	box-sizing: border-box;
+	color: #53CA72;
+	font-weight: bold;
+	text-align: center;
+}
+.sale .bd .tejia .bottom div.wou p:last-child {
+	color: #333;
+}
+.sale .bd .tejia .bottom div.wou p span {
+	color: #53CA72;
+}
+.sale .bd .tejia .bottom div.wou::after {
+	width: 48px;
+	background-image: url(../images/pic-tmh-03.png);
+	background-size: 48px 35px;
+}
